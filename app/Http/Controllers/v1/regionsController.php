@@ -18,9 +18,9 @@ class regionsController extends ApiController
      */
     public function index()
     {
-        $regions = regions::all();
+        $regions = regions::paginate(15);
 
-        return $this->response->withCollection($regions, new \App\Transformers\RegionTransformer);
+        return $this->response->withPaginator($regions, new \App\Transformers\RegionTransformer);
     }
 
     /**
