@@ -17,4 +17,5 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'api'], function () {
     Route::resource('v1/cities', 'v1\citiesController');
+    Route::resource('v1/regions', 'v1\regionsController');
 });

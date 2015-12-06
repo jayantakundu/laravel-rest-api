@@ -21,14 +21,8 @@ class citiesController extends ApiController
     {
         $cities = cities::all();
 
-        return $this->respondWithCollection($cities, new \App\Transformers\CityTransformer);
-        /*return $this->respondWithCollection($cities, function ($cities)
-        {
-            return [
-                'id'   => (integer) $cities['id'],
-                'name' => $cities['name']
-            ];
-        });*/
+        return $this->response->withCollection($cities, new \App\Transformers\CityTransformer);
+
     }
 
     /**
@@ -62,9 +56,9 @@ class citiesController extends ApiController
     {
         $city = cities::find($id);
         if(!$city){
-            return $this->respondNotFound('city does not exist');
+            return $this->response->errorNotFound('city does not exist');
         }
-        return $this->respondWithItem($city, new \App\Transformers\CityTransformer);
+        return $this->response->WithItem($city, new \App\Transformers\CityTransformer);
     }
 
     /**
